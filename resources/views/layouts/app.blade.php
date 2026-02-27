@@ -7,11 +7,13 @@
   @vite(['resources/css/app.css','resources/js/app.js'])
 </head>
 
-<body class="font-sans text-slate-950 bg-white">
+<body class="min-h-screen flex flex-col font-sans text-slate-950 bg-white">
   @include('components.navbar')
 
-  <main>
+  <main class="flex-1">
     @yield('content')
   </main>
+
+  @include('components.footer')
 </body>
 </html>
