@@ -4,29 +4,35 @@
 
 @section('content')
 
-{{-- HERO (PERSIS: "Tentang kami" + "Home – Tentang kami") --}}
-<section class="relative w-full h-[253px] overflow-hidden">
-  {{-- BG IMAGE --}}
-  <img
-    src="{{ asset('assets/images/hero.png') }}"
-    alt="Hero Background"
-    class="absolute inset-0 w-full h-full object-cover"
-  />
+{{-- FIX: offset karena navbar fixed, supaya hero nggak jadi strip --}}
+<div class="pt-[90px]"> {{-- kalau masih ketutup, naikin jadi pt-[100px]/pt-[110px] --}}
 
-  {{-- BLUE OVERLAY (biar mirip tint di screenshot) --}}
-  <div class="absolute inset-0 bg-blue-600/55"></div>
+  {{-- HERO (PERSIS: "Tentang kami" + "Home – Tentang kami") --}}
+  <section class="relative w-full h-[253px] overflow-hidden">
+    {{-- BG IMAGE --}}
+    <img
+      src="{{ asset('assets/images/hero-pages.png') }}"
+      alt="Hero Background"
+      class="absolute inset-0 w-full h-full object-cover"
+    />
 
-  {{-- TEXT CENTER --}}
-  <div class="relative max-w-6xl mx-auto px-6 h-full flex flex-col items-center justify-center text-white">
-    <h1 class="font-extrabold leading-none drop-shadow text-[54px] md:text-[68px]">
-      Tentang kami
-    </h1>
+    {{-- BLUE OVERLAY (biar mirip tint di screenshot) --}}
+    <div class="absolute inset-0 bg-blue-600/55"></div>
 
-    <p class="mt-3 text-[14px] md:text-[15px] font-semibold text-white/95">
-      Home &nbsp;–&nbsp; Tentang kami
-    </p>
-  </div>
-</section>
+    {{-- FIX: kasih z-10 biar text pasti di atas overlay --}}
+    <div class="relative z-10 max-w-6xl mx-auto px-6 h-full flex flex-col items-center justify-center text-white">
+      <h1 class="font-extrabold leading-none drop-shadow text-[54px] md:text-[68px]">
+        Tentang kami
+      </h1>
+
+      <p class="mt-3 text-[14px] md:text-[15px] font-semibold text-white/95">
+        Home &nbsp;–&nbsp; Tentang kami
+      </p>
+    </div>
+  </section>
+
+</div>
+{{-- END FIX OFFSET --}}
 
 {{-- CONTENT (dibuat mirip layout screenshot) --}}
 <section class="bg-white">
