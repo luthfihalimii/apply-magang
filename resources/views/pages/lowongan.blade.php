@@ -72,12 +72,12 @@
             </div>
           </div>
           
-          <h5 class="font-semibold text-slate-950 mb-2 text-[14px]">UI/UX Designer</h5>
+          <h5 class="font-semibold text-slate-950 mb-2 text-[14px]">Fullstack Developer</h5>
           <p class="text-[13px] text-slate-600 mb-6 leading-relaxed">
-            Dibutuhkan UI/UX Designer untuk bergabung dengan tim kami.
+            Dibutuhkan Fullstack Developer untuk bergabung dengan tim kami.
           </p>
           
-          <a href="#" class="block w-full bg-blue-600 hover:bg-blue-700 text-white text-center py-3 rounded-md font-medium text-[14px] transition-colors">
+          <a href="/lowongan/detail" class="block w-full bg-blue-600 hover:bg-blue-700 text-white text-center py-3 rounded-md font-medium text-[14px] transition-colors">
             Detail pekerjaan →
           </a>
         </div>
