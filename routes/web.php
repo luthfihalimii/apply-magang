@@ -11,3 +11,5 @@ Route::view('/lowongan', 'pages.lowongan');
 Route::view('/magang/tahap-1', 'pages.magang-tahap1');
 Route::view('/magang/tahap-2', 'pages.magang-tahap2');
 Route::view('/kontak', 'pages.kontak');
+Route::view('/publikasi', 'pages.publikasi')->name('publikasi.index');
+Route::view('/publikasi/flipbook', 'components.flipbook')->name('publikasi.flipbook');
