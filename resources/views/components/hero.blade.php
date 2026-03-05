@@ -57,10 +57,10 @@ $heroId = 'hero_' . uniqid();
 
     <div class="absolute inset-0 z-20 flex items-center">
       <div class="mx-auto w-full max-w-[1200px] px-6">
-        <div class="flex items-start gap-8 pl-10 md:pl-16">
+        <div class="hero-content-grid">
 
           <div class="hero-bullet-wrap">
-            <div data-hero-bullets class="flex flex-col items-center gap-6">
+            <div data-hero-bullets class="hero-bullet-column">
               @foreach($slides as $i => $s)
                 <button type="button"
                   aria-label="Slide {{ $i+1 }}"
@@ -71,7 +71,7 @@ $heroId = 'hero_' . uniqid();
             </div>
           </div>
 
-          <div class="text-white pt-10 w-full md:w-[55%]">
+          <div class="hero-copy text-white w-full md:w-[55%]">
 
             <div class="hero-tag-wrap">
               <span class="hero-tag-line"></span>
@@ -126,13 +126,26 @@ $heroId = 'hero_' . uniqid();
 
 <style>
 .hero-wrap .hero-bullet-wrap{
-  padding-top: 24px;
+  padding-top: 58px;
+  flex: 0 0 16px;
 }
 
-.hero-wrap [data-hero-bullets]{
-  transform: translateY(0px);
-  transition: transform 220ms ease;
-  will-change: transform;
+.hero-wrap .hero-content-grid{
+  display: flex;
+  align-items: flex-start;
+  gap: 32px;
+  padding-left: 40px;
+}
+
+.hero-wrap .hero-bullet-column{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
+
+.hero-wrap .hero-copy{
+  padding-top: 40px;
 }
 
 .hero-wrap .hero-bullet{
@@ -225,6 +238,27 @@ $heroId = 'hero_' . uniqid();
   font-size: 18px !important;
   line-height: 1 !important;
 }
+
+@media (min-width: 768px){
+  .hero-wrap .hero-content-grid{
+    padding-left: 64px;
+  }
+}
+
+@media (max-width: 767px){
+  .hero-wrap .hero-content-grid{
+    padding-left: 20px;
+    gap: 20px;
+  }
+
+  .hero-wrap .hero-bullet-wrap{
+    padding-top: 52px;
+  }
+
+  .hero-wrap .hero-copy{
+    padding-top: 30px;
+  }
+}
 </style>
 
 <script>
@@ -234,7 +268,6 @@ $heroId = 'hero_' . uniqid();
 
   const slides = @json($slides);
   const dots = Array.from(root.querySelectorAll('[data-hero-dot]'));
-  const bulletsCol = root.querySelector('[data-hero-bullets]');
 
   const elImage = root.querySelector('[data-hero-image]');
   const elTag = root.querySelector('[data-hero-tag]');
@@ -259,21 +292,6 @@ function setActive(){
   });
 }
 
-  function alignBulletsToTitle() {
-    if (!bulletsCol || !dots[index]) return;
-
-    const titleRect = elTitle.getBoundingClientRect();
-    const activeRect = dots[index].getBoundingClientRect();
-
-    const fontSize = parseFloat(getComputedStyle(elTitle).fontSize) || 48;
-
-    const targetY = titleRect.top + (fontSize * 0.58);
-    const currentY = activeRect.top + (activeRect.height / 2);
-
-    const delta = targetY - currentY;
-    bulletsCol.style.transform = `translateY(${delta}px)`;
-  }
-
   function render(i) {
     index = i;
     const s = slides[index];
@@ -289,11 +307,6 @@ function setActive(){
     elSecondaryText.textContent = s.secondary?.text || 'Hubungi kami';
 
     setActive();
-
-    requestAnimationFrame(() => {
-      alignBulletsToTitle();
-      requestAnimationFrame(alignBulletsToTitle);
-    });
   }
 
   function start() {
@@ -312,8 +325,6 @@ function setActive(){
       start();
     });
   });
-
-  window.addEventListener('resize', () => alignBulletsToTitle());
 
   render(0);
   start();
